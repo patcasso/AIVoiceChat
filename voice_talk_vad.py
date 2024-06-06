@@ -1,4 +1,10 @@
-import pyaudio, wave, numpy, collections, faster_whisper, torch.cuda
+import pyaudio
+import wave
+import numpy
+import collections
+import faster_whisper
+import torch.cuda
+
 from openai import OpenAI
 from elevenlabs import stream as elevenlabs_stream, Voice, VoiceSettings
 from elevenlabs.client import ElevenLabs
