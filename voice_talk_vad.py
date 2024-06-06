@@ -1,11 +1,9 @@
-# Dependencies
 import pyaudio, wave, numpy, collections, faster_whisper, torch.cuda
 from openai import OpenAI
 from elevenlabs import stream as elevenlabs_stream, Voice, VoiceSettings
 from elevenlabs.client import ElevenLabs
 from play_audio import play_audio
 
-# Utils
 import json
 import time
 import os
