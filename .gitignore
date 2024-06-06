@@ -10,3 +10,6 @@ __pycache__/
 
 # Audio recording
 voice_record.wav
+
+# .env file
+.env

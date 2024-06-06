@@ -8,15 +8,17 @@ from play_audio import play_audio
 # Import utils
 import json
 import time
+import os
+from dotenv import load_dotenv
 
 
 # Define clinets and API keys
-elevenlabs_client = ElevenLabs(
-    api_key="461c2b3613aae40ac0019422a99b3a1d"  # Defaults to ELEVEN_API_KEY
-)
-openai_client = OpenAI(
-    api_key="sk-general-purpose-UGG3svPXxqKO9zJQlqLiT3BlbkFJzhk6Cxw9eDNqHuFfp3FX",
-)
+load_dotenv()
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
+ELEVENLABS_API_KEY = os.environ.get("ELEVENLABS_API_KEY")
+
+openai_client = OpenAI(api_key=OPENAI_API_KEY)
+elevenlabs_client = ElevenLabs(api_key=ELEVENLABS_API_KEY)
 
 # System prompt here
 persona = [
@@ -146,7 +148,7 @@ while True:
         model="eleven_monolingual_v1",
         voice=Voice(
             # voice_id="QELRzhyCS20Z5NK8HJoL", # Preacher
-            voice_id="1pTeUJPQLqnJpo6bZVeo", # ESG clip
+            voice_id="1pTeUJPQLqnJpo6bZVeo",  # ESG clip
             settings=VoiceSettings(
                 stability=0.71, similarity_boost=1.0, style=0.0, use_speaker_boost=True
             ),
