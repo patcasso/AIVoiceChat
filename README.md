@@ -1,5 +1,19 @@
 Seamless and real-time voice interaction with AI.  
 
+> **JY Edit:** *First, create an virtual environment with python version 3.11. 
+<br/>
+For Example, `conda create -n yourname python=3.11`.
+<br/>
+On Mac OS, you might need to install portaudio through homebrew command, 
+`brew install portaudio` before installing pyaudio. Then, run command `pip install -r requirements.txt`*
+
+>*Second, create `.env` file in the root folder and set the API KEY for OpenAI and ElevenLabs as environment variables.*
+
+>*Third, replace the voice_id within `audio_stream` variable with your own voice model id or preset voice model ids in ElevenLabs.*
+
+<br />
+<br />
+
 > **Hint:** *Anybody interested in state-of-the-art voice solutions please also <strong>have a look at [Linguflex](https://github.com/KoljaB/Linguflex)</strong>. It lets you control your environment by speaking and is one of the most capable and sophisticated open-source assistants currently available.*
 
 Uses faster_whisper and elevenlabs input streaming for low latency responses to spoken input.

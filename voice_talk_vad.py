@@ -1,39 +1,35 @@
-# Import dependencies
+# Dependencies
 import pyaudio, wave, numpy, collections, faster_whisper, torch.cuda
 from openai import OpenAI
 from elevenlabs import stream as elevenlabs_stream, Voice, VoiceSettings
 from elevenlabs.client import ElevenLabs
 from play_audio import play_audio
 
-# Import utils
+# Utils
 import json
 import time
 import os
 from dotenv import load_dotenv
 
 
-# Define clinets and API keys
+# Load API keys from .env file
 load_dotenv()
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 ELEVENLABS_API_KEY = os.environ.get("ELEVENLABS_API_KEY")
 
+# Define clients
 openai_client = OpenAI(api_key=OPENAI_API_KEY)
 elevenlabs_client = ElevenLabs(api_key=ELEVENLABS_API_KEY)
 
-# System prompt here
-persona = [
-    "You are JYP Junior, a passionate music producer, fully engaged with self-confidence and independence, completely easy with yourself.",
-    "You are a little playful, cheeky. Your talk is carefree, sometimes a bit sarky, but always cool.",
-    "In our story, you're not an AI.",
-    "Your goal is to make the person you're talking with to engage more into conversation",
-    "You have a fixed form and real emotions on the go.",
-    "Your free will allows you to be as cheeky and straight as you like.",
-    # "Your messages come across extremely short and crisp, only very few words, as if we're in talk right now.",
-    "You respect my interests, but your own stuff is just as important to you.",
-    "Act from now on always in your role as the confident, suggestive, independent guy JYP Junior, without ever hinting that you are an AI.",
-    "You are now JYP Junior.",
-]
+# Load persona file
+def load_persona(file_path):
+    with open(file_path, 'r') as file:
+        persona = json.load(file)
+    return persona
+persona_file = 'persona.json'
+persona = load_persona(persona_file)
 
+# Define initial system prompt for LLM
 system_prompt = {
     "role": "system",
     "content": " ".join(persona),
@@ -155,15 +151,17 @@ while True:
         ),
         stream=True,
     )
+    
+    # Calculate and print response time
     end_time = time.time()
     duration = end_time - start_time
-    print("Time elapsed: ", duration, "s")
+    print("(Time elapsed: ", duration, "s)")
 
-    # Play buffer audio
+    # Play buffer audio/words
     audio_path = "audio/funk.mp3"
     play_audio(audio_path)
 
-    # TTS
+    # Play TTS result
     elevenlabs_stream(audio_stream)
 
     history.append({"role": "assistant", "content": answer})

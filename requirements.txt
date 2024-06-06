@@ -1,0 +1,7 @@
+openai
+elevenlabs
+pyaudio
+pygame
+faster_whisper
+torch
+python-dotenv
