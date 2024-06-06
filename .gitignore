@@ -1,0 +1,10 @@
+# Python Cache
+__pycache__/
+*.pyc
+
+
+# macOS misc
+.DS_Store
+._.DS_Store
+**/.DS_Store
+**/._.DS_Store
