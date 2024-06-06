@@ -99,8 +99,7 @@ while True:
     
     # Play Initiating Audio
     print("\n\nStart speaking. ", end="", flush=True)
-    audio_path = "audio/funk.mp3"
-    play_audio(audio_path)
+
 
     while True:
         data = stream.read(512)
@@ -157,6 +156,13 @@ while True:
     end_time = time.time()
     duration = end_time - start_time
     print("Time elapsed: ", duration, "s")
+
+    # Play buffer audio
+    audio_path = "audio/funk.mp3"
+    play_audio(audio_path)
+
+    # TTS
     elevenlabs_stream(audio_stream)
+
 
     history.append({"role": "assistant", "content": answer})
