@@ -2,7 +2,8 @@ Seamless and real-time voice interaction with AI.
 
 > **JY Edit:** *First, create an virtual environment with python version 3.11. 
 <br/>
-For Example, `conda create -n yourname python=3.11`.
+For Example,
+> `conda create -n yourname python=3.11`.
 <br/>
 On Mac OS, you might need to install portaudio through homebrew command, 
 `brew install portaudio` before installing pyaudio. Then, run command `pip install -r requirements.txt`*
