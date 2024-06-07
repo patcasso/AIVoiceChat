@@ -16,7 +16,7 @@ from play_audio import play_audio
 import json
 import time
 import os
-from dotenv import load_dotenv
+from dotenv import load_dotenvd
 
 
 # Load API keys from .env file

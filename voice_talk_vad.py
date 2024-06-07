@@ -42,12 +42,12 @@ system_prompt = {
 model, answer, history = (
     faster_whisper.WhisperModel(
         model_size_or_path="tiny.en",
+        # model_size_or_path="large-v3",
         device="cuda" if torch.cuda.is_available() else "cpu",
     ),
     "",
     [],
 )
-
 
 def generate(messages):
     global answer
