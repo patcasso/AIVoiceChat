@@ -82,6 +82,7 @@ def get_levels(data, long_term_noise_level, current_noise_level):
     return pegel, long_term_noise_level, current_noise_level
 
 
+
 while True:
     audio = pyaudio.PyAudio()
     stream = audio.open(
