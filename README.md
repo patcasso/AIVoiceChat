@@ -7,6 +7,7 @@ For Example,
 <br/>
 On Mac OS, you might need to install portaudio through homebrew command, 
 `brew install portaudio` before installing pyaudio. Then, run command `pip install -r requirements.txt`*
+Also, run `brew install mpv` for ElevenLabs TTS stream function.
 
 >*Second, create `.env` file in the root folder and set the API KEY for OpenAI and ElevenLabs as environment variables.*
 
