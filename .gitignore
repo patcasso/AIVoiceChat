@@ -13,3 +13,6 @@ voice_record.wav
 
 # .env file
 .env
+
+# Downloaded audio
+downloads/

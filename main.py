@@ -201,6 +201,22 @@ if st.button("Send GET Request"):
 # File uploader widget
 uploaded_file = st.file_uploader("Choose an MP3 file", type="mp3")
 
+# if uploaded_file is not None:
+#     if st.button("Upload"):
+#         try:
+#             # Create a file dictionary to send with the POST request
+#             files = {'file': uploaded_file}
+#             # Send the POST request to the server
+#             response = requests.post("http://localhost:8060/upload", files=files)
+            
+#             if response.status_code == 200:
+#                 st.success("File uploaded successfully!")
+#                 st.write("Response:", response.json())
+#             else:
+#                 st.error(f"Upload failed with status code: {response.status_code}")
+#         except Exception as e:
+#             st.error(f"An error occurred: {e}")
+
 if uploaded_file is not None:
     if st.button("Upload"):
         try:
@@ -208,10 +224,24 @@ if uploaded_file is not None:
             files = {'file': uploaded_file}
             # Send the POST request to the server
             response = requests.post("http://localhost:8060/upload", files=files)
-            
+
             if response.status_code == 200:
-                st.success("File uploaded successfully!")
-                st.write("Response:", response.json())
+                st.success("File uploaded and retrieved successfully!")
+
+                # Ensure the upload directory exists
+                UPLOAD_DIRECTORY = "./downloads"
+                os.makedirs(UPLOAD_DIRECTORY, exist_ok=True)
+                
+                # Save the returned file
+                mp3_file_path = f"downloads/{uploaded_file.name}"
+                with open(mp3_file_path, "wb") as f:
+                    f.write(response.content)
+                
+                # Provide a link to download the file
+                st.markdown(f"[Download MP3 File]({mp3_file_path})")
+
+                # Optionally, you can use an audio player in Streamlit to play the file
+                st.audio(mp3_file_path, format='audio/mp3')
             else:
                 st.error(f"Upload failed with status code: {response.status_code}")
         except Exception as e:
